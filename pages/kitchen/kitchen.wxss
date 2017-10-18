@@ -1,0 +1,18 @@
+.kitchen-category {
+  padding: 20rpx;
+}
+
+.category-item {
+  display: inline-block;
+  width: 165rpx;
+  padding: 7rpx;
+}
+
+.category-img {
+  width: 165rpx;
+  height: 165rpx;
+}
+
+.category-name {
+  font-size: 12px;
+}
