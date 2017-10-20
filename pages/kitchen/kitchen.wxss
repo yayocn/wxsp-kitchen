@@ -1,5 +1,6 @@
 .kitchen-category {
-  padding: 20rpx;
+  padding-top: 20rpx;
+  padding-bottom: 20rpx;
 }
 
 .category-item {

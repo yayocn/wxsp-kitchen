@@ -2,10 +2,24 @@
   <text class="text-success center-hz">this is my kitchen</text>
 
   <view class="kitchen-category">
+    <text class="category-title">早餐</text>
+    <view class="category-content">
+      <view wx:for="{{breakfasts}}" wx:key="{{index}}" data-info="{{item}}"
+        class="category-item text-center"
+        bindtap="goFoodDetails">
+        <image mode="{{imgMode}}" src="{{item.imgUrl}}" class="category-img"></image>
+        <text class="category-name">{{item.name}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="kitchen-category">
     <text class="category-title">炒菜</text>
     <view class="category-content">
-      <view wx:for="{{sautes}}" class="category-item text-center">
-        <image src="{{item.imgUrl}}" class="category-img"></image>
+      <view wx:for="{{sautes}}" wx:key="{{index}}" data-info="{{item}}"
+        class="category-item text-center"
+        bindtap="goFoodDetails">
+        <image mode="{{imgMode}}" src="{{item.imgUrl}}" class="category-img"></image>
         <text class="category-name">{{item.name}}</text>
       </view>
     </view>
@@ -14,8 +28,10 @@
   <view class="kitchen-category">
     <text class="category-title">硬菜</text>
     <view class="category-content">
-      <view wx:for="{{hardFoods}}" class="category-item text-center">
-        <image src="{{item.imgUrl}}" class="category-img"></image>
+      <view wx:for="{{hardFoods}}" wx:key="{{index}}" data-info="{{item}}"
+        class="category-item text-center"
+        bindtap="goFoodDetails">
+        <image mode="{{imgMode}}" src="{{item.imgUrl}}" class="category-img"></image>
         <text class="category-name">{{item.name}}</text>
       </view>
     </view>
@@ -24,8 +40,10 @@
   <view class="kitchen-category">
     <text class="category-title">小吃</text>
     <view class="category-content">
-      <view wx:for="{{snacks}}" class="category-item text-center">
-        <image src="{{item.imgUrl}}" class="category-img"></image>
+      <view wx:for="{{snacks}}" wx:key="{{index}}" data-info="{{item}}"
+        class="category-item text-center"
+        bindtap="goFoodDetails">
+        <image mode="{{imgMode}}" src="{{item.imgUrl}}" class="category-img"></image>
         <text class="category-name">{{item.name}}</text>
       </view>
     </view>
@@ -34,18 +52,10 @@
   <view class="kitchen-category">
     <text class="category-title">凉菜</text>
     <view class="category-content">
-      <view wx:for="{{coldDishes}}" class="category-item text-center">
-        <image src="{{item.imgUrl}}" class="category-img"></image>
-        <text class="category-name">{{item.name}}</text>
-      </view>
-    </view>
-  </view>
-
-  <view class="kitchen-category">
-    <text class="category-title">早餐</text>
-    <view class="category-content">
-      <view wx:for="{{breakfasts}}" class="category-item text-center">
-        <image src="{{item.imgUrl}}" class="category-img"></image>
+      <view wx:for="{{coldDishes}}" wx:key="{{index}}" data-info="{{item}}"
+        class="category-item text-center"
+        bindtap="goFoodDetails">
+        <image mode="{{imgMode}}" src="{{item.imgUrl}}" class="category-img"></image>
         <text class="category-name">{{item.name}}</text>
       </view>
     </view>

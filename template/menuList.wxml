@@ -1,0 +1,13 @@
+<template name="menuList">
+  <view class="box menu-list">
+    <view class="box-header">清单</view>
+    <scroll-view class="box-body" scroll-y style="height: 200px;" bindscroll="scroll" scroll-into-view="{{toView}}">
+      <view class="media" wx:for="{{ menuList }}" wx:key="index">
+        <image mode="aspectFill" src="{{ item.imgUrl }}" class="media-img"></image>
+        <view class="meida-content">
+          <text>{{ item.name }}</text>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+</template>

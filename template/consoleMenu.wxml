@@ -1,0 +1,7 @@
+<template name="consoleMenu">
+  <view class="btn-wrap console-menu">
+    <button type="default">清单 <text class="label label-danger">{{ menuList.length }}</text></button>
+    <button type="warn">删除</button>
+    <button type="primary">提交</button>
+  </view>
+</template>

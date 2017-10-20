@@ -1,7 +1,8 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/kitchen/kitchen"
+    "pages/kitchen/kitchen",
+    "pages/foodDetail/foodDetail"
   ],
   "window": {
     "backgroundTextStyle": "light",
