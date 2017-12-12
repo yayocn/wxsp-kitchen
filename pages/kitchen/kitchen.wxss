@@ -1,19 +1,40 @@
 .kitchen-category {
+  width: 100%;
   padding-top: 20rpx;
   padding-bottom: 20rpx;
 }
 
 .category-item {
-  display: inline-block;
-  width: 165rpx;
+  display: flex;
+  width: 100%;
   padding: 7rpx;
 }
 
 .category-img {
+  vertical-align: top;
   width: 165rpx;
   height: 165rpx;
 }
 
+.category-detail {
+  flex: 1;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+.category-detail-row {
+  display: block;
+  font-size: 12px;
+}
+
+.category-detail-row + .category-detail-row {
+  margin-top: 10px;
+}
+
 .category-name {
   font-size: 12px;
+}
+
+.category-times {
+  color: #ff0000;
 }

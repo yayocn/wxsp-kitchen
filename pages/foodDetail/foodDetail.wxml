@@ -3,22 +3,22 @@
     <icon class="back" type="download" size="40" color="success" catchtap="goBack"/>
     <text class="text-success header-title">{{ foodInfo.name }}</text>
   </view>
-  <image class="food-image" mode="aspectFill" src="{{ foodInfo.imgUrl }}"></image>
+  <image class="food-image" mode="aspectFill" src="http://localhost:8888/public/img/{{ foodInfo.pic }}"></image>
 
   <view class="table m-t-10 details">
     <view class="tr text-left">
       <view class="td text-left">用时</view>
-      <view class="td">{{ foodInfo.time }}</view>
+      <view class="td">{{ foodInfo.cost.time }} 分钟</view>
     </view>
     <view class="tr">
       <view class="td">成本</view>
-      <view class="td">￥ {{ foodInfo.cost }}</view>
+      <view class="td">￥ {{ foodInfo.cost.money }}</view>
     </view>
     <view class="tr">
       <view class="td">材料</view>
       <view class="td td-rowspan">
-        <text wx:for="{{ foodInfo.materials }}" wx:key="{{ index }}">
-          {{ item.name }} : {{ item.weight }} {{ item.unit }}
+        <text wx:for="{{ foodInfo.material }}" wx:key="{{ index }}">
+          {{ item.name }} : {{ item.quantity }}
         </text>
       </view>
     </view>
@@ -27,8 +27,8 @@
   <button class="m-t-10" size="mini" type="default">加入菜单</button>
 </view>
 
-<import src="/template/menuList.wxml"/>
+<!-- <import src="/template/menuList.wxml"/>
 <template is="menuList" data="{{ menuList }}"/>
 
 <import src="/template/consoleMenu.wxml"/>
-<template is="consoleMenu" data="{{ menuList }}"/>
+<template is="consoleMenu" data="{{ menuList }}"/> -->

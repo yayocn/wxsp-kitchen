@@ -6,28 +6,7 @@ Page({
    */
   data: {
     imgMode: 'aspectFill',
-    sautes: [
-      { 'id': 'food-000001', 'name': '回锅肉', 'imgUrl': 'http://img3.imgtn.bdimg.com/it/u=876799413,3023526702&fm=27&gp=0.jpg'},
-      { 'id': 'food-000002', 'name': '蒜薹炒肉', 'imgUrl': 'http://img4.imgtn.bdimg.com/it/u=1726172795,279360365&fm=200&gp=0.jpg'},
-      { 'id': 'food-000002', 'name': '土豆丝', 'imgUrl': 'http://img2.imgtn.bdimg.com/it/u=2100948825,3834398967&fm=11&gp=0.jpg'},
-      { 'id': 'food-000003', 'name': '藕片', 'imgUrl': 'http://img4.imgtn.bdimg.com/it/u=1388693028,2038394116&fm=27&gp=0.jpg' },
-    ],
-    hardFoods: [
-      { 'id': 'food-000004', 'name': '清蒸鱼', 'imgUrl': 'http://img3.imgtn.bdimg.com/it/u=4127140484,1827845669&fm=27&gp=0.jpg' },
-      { 'id': 'food-000005', 'name': '炖排骨', 'imgUrl': 'http://img4.imgtn.bdimg.com/it/u=898854617,3598969995&fm=27&gp=0.jpg' },
-      { 'id': 'food-000006', 'name': '烧牛肉', 'imgUrl': 'http://img1.imgtn.bdimg.com/it/u=2101099225,2394145066&fm=200&gp=0.jpg' },
-    ],
-    snacks: [
-      { 'id': 'food-000007', 'name': '狼牙土豆', 'imgUrl': 'http://img2.imgtn.bdimg.com/it/u=3836923942,4132371950&fm=27&gp=0.jpg' },
-    ],
-    coldDishes: [
-      { 'id': 'food-000008', 'name': '凉拌黄瓜', 'imgUrl': 'http://img2.imgtn.bdimg.com/it/u=3293415850,3144586682&fm=27&gp=0.jpg' }
-    ],
-    breakfasts: [
-      { 'id': 'food-000009', 'name': '鸡蛋仔', 'imgUrl': 'http://img2.imgtn.bdimg.com/it/u=3647053653,4083283773&fm=27&gp=0.jpg' },
-      { 'id': 'food-000010', 'name': '蒸蛋', 'imgUrl': 'http://img1.imgtn.bdimg.com/it/u=843316550,4196301975&fm=27&gp=0.jpg' },
-      { 'id': 'food-000011', 'name': '牛奶饼干', 'imgUrl': 'http://img3.imgtn.bdimg.com/it/u=3222193250,863123359&fm=200&gp=0.jpg' }
-    ],
+    foodMenu: {}
   },
   goFoodDetails (e) {
     let info = e.currentTarget.dataset.info;
@@ -39,7 +18,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log('load')
+    let vm = this;
+    wx.request({
+      url: `http://localhost:8888/menu`,
+      success: function (result) {
+        const data = result.data;
+        vm.setData({'foodMenu': data});
+      }
+    })
   },
 
   /**

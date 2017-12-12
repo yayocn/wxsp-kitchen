@@ -29,6 +29,10 @@
   margin: 0 auto !important;
 }
 
+.m-r-5 {
+  margin-right: 5px;
+}
+
 .m-t-10 {
   margin-top: 10px;
 }
@@ -98,6 +102,16 @@
   padding: 16px 20px;
   width: 100%;
   background-color: #fff;
+}
+
+.label-badge {
+  display: inline-block;
+  padding: 3px 5px;
+  height: 16px;
+  line-height: 5px;
+  border-radius: 1000px;
+  background-color: #36c6d3;
+  color: #f5f5f5;
 }
 
 .media {
