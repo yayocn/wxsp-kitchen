@@ -1,5 +1,5 @@
 <view class="container wrap-left">
-  <text class="text-success center-hz">this is my kitchen</text>
+  <text class="text-success center-hz">厨房</text>
 
   <text>{{ foodMenuStr }}</text>
   <view wx:if="{{ foodMenu.breakfast }}" class="kitchen-category">
@@ -24,13 +24,17 @@
         <view class="category-detail">
           <text class="category-detail-row category-name">{{ item.name }}</text>
           <text class="category-detail-row category-taste">
-            <text wx:for="{{ item.taste }}" wx:key="{{ index }}" wx:for-item="taste" class="label-badge m-r-5">
-              {{ taste }}
-            </text>
+            <text wx:for="{{ item.taste }}" wx:key="{{ index }}" wx:for-item="taste" class="label-badge m-r-5">{{ taste }}</text>
           </text>
           <text class="category-detail-row category-times">次数: {{ item.times }}</text>
+        </view>
+        <view class='category-handle'>
+          <button type='primary' class='' hover-stop-propagation='true' catchtap='addMenu'>+</button>
         </view>
       </view>
     </view>
   </view>
 </view>
+
+<import src='/template/consoleMenu.wxml'/>
+<template is='consoleMenu' data="{{ orderList }}"/>

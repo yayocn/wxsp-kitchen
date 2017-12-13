@@ -5,30 +5,31 @@
   </view>
   <image class="food-image" mode="aspectFill" src="http://localhost:8888/public/img/{{ foodInfo.pic }}"></image>
 
-  <view class="table m-t-10 details">
-    <view class="tr text-left">
-      <view class="td text-left">用时</view>
-      <view class="td">{{ foodInfo.cost.time }} 分钟</view>
-    </view>
-    <view class="tr">
-      <view class="td">成本</view>
-      <view class="td">￥ {{ foodInfo.cost.money }}</view>
-    </view>
-    <view class="tr">
-      <view class="td">材料</view>
-      <view class="td td-rowspan">
-        <text wx:for="{{ foodInfo.material }}" wx:key="{{ index }}">
-          {{ item.name }} : {{ item.quantity }}
-        </text>
+  <view class='m-t-10'>
+    <text wx:for="{{ foodInfo.taste }}" wx:key="{{ index }}" wx:for-item="taste" class="label-badge m-r-5">{{ taste }}</text>
+  </view>
+
+  <view class='m-t-10 detail-item'>
+    <view class='detail-key'>用时</view>
+    <view class='detail-value'>{{ foodInfo.cost.time }} 分钟</view>
+  </view>
+
+  <view class='detail-item'>
+    <view class='detail-key'>成本</view>
+    <view class='detail-value'>￥ {{ foodInfo.cost.money }}</view>
+  </view>
+
+  <view class='detail-item'>
+    <view class="detail-key">食材</view>
+    <view class="detail-value">
+      <view wx:for="{{ foodInfo.material }}" wx:key="{{ index }}" class='m-b-5'>
+        {{ item.name }} : {{ item.quantity }}
       </view>
     </view>
   </view>
 
-  <button class="m-t-10" size="mini" type="default">加入菜单</button>
+  <button class="m-t-10" type="primary" catchtap='addMenu'>就吃这个</button>
 </view>
 
-<!-- <import src="/template/menuList.wxml"/>
-<template is="menuList" data="{{ menuList }}"/>
-
 <import src="/template/consoleMenu.wxml"/>
-<template is="consoleMenu" data="{{ menuList }}"/> -->
+<template is="consoleMenu" data="{{ orderList }}"/>

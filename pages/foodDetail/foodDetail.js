@@ -1,26 +1,29 @@
+const app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    menuList: []
+    orderList: []
   },
   goBack (e) {
     wx.navigateBack({
       delta: 1
     })
   },
+  addMenu () {
+
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     let vm = this;
-    wx.request({
-      url: `http://localhost:8888/food/1`,
-      success: function (result) {
-        const data = result.data;
-        vm.setData({ 'foodInfo': data });
+    app.request.getFoodInfo({
+      id: '1',
+      callback (res) {
+        vm.setData({ foodInfo: res });
       }
     })
   },

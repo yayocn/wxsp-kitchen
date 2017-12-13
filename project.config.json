@@ -21,8 +21,20 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
-			"list": []
+			"current": 1,
+			"list": [
+				{
+					"id": -1,
+					"name": "详情页",
+					"pathName": "pages/foodDetail/foodDetail",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "菜单主页",
+					"pathName": "pages/kitchen/kitchen"
+				}
+			]
 		}
 	}
 }

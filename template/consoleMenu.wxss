@@ -1,0 +1,46 @@
+.console-menu {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.console-menu.btn-wrap {
+  display: flex;
+  overflow: hidden;
+}
+
+.console-menu button {
+  flex-grow: 1;
+  text-align: center;
+  border-radius: 0 !important;
+}
+
+.console-menu button:after {
+  border-color: transparent;
+}
+
+.menu-list {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 46px;
+  left: 0;
+  height: 0;
+  background-color: rgba(0,0,0,.6);
+  overflow: hidden;
+}
+
+.menu-list.show {
+  height: auto;
+}
+
+.menu-list > .box-header {
+  position: absolute;
+  bottom: 232px;
+}
+
+.menu-list > .box-body {
+  position: absolute;
+  bottom: 0;
+}

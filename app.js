@@ -45,6 +45,30 @@ App({
     })
   },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    host: 'http://localhost:8888',
+  },
+  request: {
+    getFoodMenu (option) {
+      const app = getApp();
+      wx.request({
+        url: `${ app.globalData.host }/menu`,
+        method: "GET",
+        success: function (result) {
+          const data = result.data;
+          option.callback(data);
+        }
+      })
+    },
+    getFoodInfo (option) {
+      const app = getApp();
+      wx.request({
+        url: `${app.globalData.host }/food/${ option.id }`,
+        success: function (result) {
+          const data = result.data;
+          option.callback(data);
+        }
+      })
+    }
   }
 })

@@ -18,48 +18,22 @@
   height: 300rpx;
 }
 
-.details {
+.detail-item {
+  display: flex;
+  width: 100%;
+  padding: 10px 0;
   font-size: 13px;
 }
 
-.console-menu {
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  left: 0;
+.detail-item + .detail-item {
+  border-top: 1px solid rgba(0,0,0,.2);
 }
 
-.console-menu.btn-wrap {
-  display: flex;
-  overflow: hidden;
+.detail-key {
+  padding: 0 5px;
+  width: 100px;
 }
 
-.console-menu button {
-  flex-grow: 1;
-  text-align: center;
-  border-radius: 0 !important;
-}
-
-.console-menu button:after {
-  border-color: transparent;
-}
-
-.menu-list {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 46px;
-  left: 0;
-  background-color: rgba(0,0,0,.6);
-  overflow: hidden;
-}
-
-.menu-list > .box-header {
-  position: absolute;
-  bottom: 232px;
-}
-
-.menu-list > .box-body {
-  position: absolute;
-  bottom: 0;
+.detail-value {
+  flex: 1;
 }

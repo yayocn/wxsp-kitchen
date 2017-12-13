@@ -1,7 +1,20 @@
 <template name="consoleMenu">
+  <view class="box menu-list">
+    <view class="box-header">下一顿要吃这些</view>
+    <scroll-view class="box-body" scroll-y style="height: 200px;" scroll-into-view="red">
+      <view class="media" wx:for="{{ orderList }}" wx:key="index">
+        <image mode="aspectFill" src="{{ item.imgUrl }}" class="media-img"></image>
+        <view class="meida-content">
+          <text>{{ item.name }}</text>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
   <view class="btn-wrap console-menu">
-    <button type="default">清单 <text class="label label-danger">{{ menuList.length }}</text></button>
-    <button type="warn">删除</button>
-    <button type="primary">提交</button>
+    <button type="default" disabled='{{ orderList.length === 0 }}'>
+      要吃这些 <text class="label label-badge">{{ orderList.length }}</text></button>
+    <button type="warn" disabled='{{ orderList.length === 0 }}'>删除</button>
+    <button type="primary" disabled='{{ orderList.length === 0 }}'>提交</button>
   </view>
 </template>

@@ -1,4 +1,5 @@
 // pages/kitchen/kitchen.js
+const app = getApp();
 Page({
 
   /**
@@ -6,7 +7,8 @@ Page({
    */
   data: {
     imgMode: 'aspectFill',
-    foodMenu: {}
+    foodMenu: {},
+    orderList: []
   },
   goFoodDetails (e) {
     let info = e.currentTarget.dataset.info;
@@ -14,16 +16,17 @@ Page({
       url: `/pages/foodDetail/foodDetail?id=${info.id}`,
     })
   },
+  addMenu (e) {
+    console.log('//TO DO', '添加到菜单里')
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     let vm = this;
-    wx.request({
-      url: `http://localhost:8888/menu`,
-      success: function (result) {
-        const data = result.data;
-        vm.setData({'foodMenu': data});
+    app.request.getFoodMenu({
+      callback (res) {
+        vm.setData({ 'foodMenu': res });
       }
     })
   },

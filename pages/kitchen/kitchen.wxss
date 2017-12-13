@@ -10,6 +10,10 @@
   padding: 7rpx;
 }
 
+.category-item + .category-item {
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
+}
+
 .category-img {
   vertical-align: top;
   width: 165rpx;
@@ -37,4 +41,8 @@
 
 .category-times {
   color: #ff0000;
+}
+
+.category-handle button {
+  line-height: 88px;
 }
