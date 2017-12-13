@@ -63,7 +63,17 @@ App({
     getFoodInfo (option) {
       const app = getApp();
       wx.request({
-        url: `${app.globalData.host }/food/${ option.id }`,
+        url: `${ app.globalData.host }/food/${ option.id }`,
+        success: function (result) {
+          const data = result.data;
+          option.callback(data);
+        }
+      })
+    },
+    getOrderList (option) {
+      const app = getApp();
+      wx.request({
+        url: `${ app.globalData.host }/order/${ option.id }`,
         success: function (result) {
           const data = result.data;
           option.callback(data);

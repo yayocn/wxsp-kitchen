@@ -37,4 +37,4 @@
 </view>
 
 <import src='/template/consoleMenu.wxml'/>
-<template is='consoleMenu' data="{{ orderList }}"/>
+<template is='consoleMenu' data="{{ ...order }}"/>

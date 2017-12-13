@@ -105,7 +105,6 @@
 
 .box-body {
   position: relative;
-  padding: 16px 20px;
   width: 100%;
   background-color: #fff;
 }

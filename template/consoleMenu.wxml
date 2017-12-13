@@ -1,18 +1,21 @@
 <template name="consoleMenu">
-  <view class="box menu-list">
-    <view class="box-header">下一顿要吃这些</view>
-    <scroll-view class="box-body" scroll-y style="height: 200px;" scroll-into-view="red">
-      <view class="media" wx:for="{{ orderList }}" wx:key="index">
-        <image mode="aspectFill" src="{{ item.imgUrl }}" class="media-img"></image>
-        <view class="meida-content">
-          <text>{{ item.name }}</text>
+  <view class="menu-list {{ listClass }}">
+    <view class='cover' catchtap='toggleOrderListDialog'></view> 
+    <view class="container">
+      <view class="box-header">下一顿要吃这些</view>
+      <scroll-view class="box-body" scroll-y style="height: 232px;" scroll-into-view="red">
+        <view class="media order-item" wx:for="{{ orderList }}" wx:key="index">
+          <image mode="aspectFill" src="http://localhost:8888/public/img/{{ item.pic }}" class="media-img"></image>
+          <view class="meida-content">
+            <text>{{ item.name }}</text>
+          </view>
         </view>
-      </view>
-    </scroll-view>
+      </scroll-view>
+    </view>
   </view>
 
   <view class="btn-wrap console-menu">
-    <button type="default" disabled='{{ orderList.length === 0 }}'>
+    <button type="default" disabled='{{ orderList.length === 0 }}' catchtap="toggleOrderListDialog">
       要吃这些 <text class="label label-badge">{{ orderList.length }}</text></button>
     <button type="warn" disabled='{{ orderList.length === 0 }}'>删除</button>
     <button type="primary" disabled='{{ orderList.length === 0 }}'>提交</button>

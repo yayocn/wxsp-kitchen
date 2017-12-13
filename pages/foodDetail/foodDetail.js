@@ -39,7 +39,13 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    let vm = this;
+    app.request.getOrderList({
+      id: '111',
+      callback(res) {
+        vm.setData({ orderList: res });
+      }
+    });
   },
 
   /**

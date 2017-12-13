@@ -26,21 +26,42 @@
   right: 0;
   bottom: 46px;
   left: 0;
-  height: 0;
+  height: 0; 
   background-color: rgba(0,0,0,.6);
   overflow: hidden;
 }
 
 .menu-list.show {
-  height: auto;
+   height: auto; 
 }
 
-.menu-list > .box-header {
+.menu-list .cover {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+.menu-list .container {
+  z-index: 1001;
+}
+
+.menu-list .box-header {
   position: absolute;
   bottom: 232px;
 }
 
-.menu-list > .box-body {
+.menu-list .box-body {
   position: absolute;
   bottom: 0;
+}
+
+.order-item {
+  padding: 5px 0;
+}
+
+.order-item + .order-item {
+  border-top: 1px solid rgba(0,0,0,.2);
 }
