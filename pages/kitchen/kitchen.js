@@ -10,7 +10,8 @@ Page({
     foodMenu: {},
     order: {
       orderList: [],
-      listClass: ''
+      listClass: '',
+      selectedList: []
     }
   },
   goFoodDetails (e) {
@@ -50,7 +51,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    console.log('show');
     let vm = this;
     app.request.getOrderList({
       id: '111',
@@ -93,5 +93,17 @@ Page({
    */
   onShareAppMessage: function () {
     console.log('share app message')
+  },
+  checkboxChange: function (e) {
+    let vm = this;
+    let id = e.target.dataset.id;
+    let value = e.detail.value[0];
+    let selectedList = vm.data.order.selectedList;
+    if (value == undefined) {
+      selectedList.splice(vm.data.order.selectedList.indexOf(id), 1);
+    } else {
+      selectedList.push(id);
+    }
+    vm.setData({ ['order.selectedList']: selectedList });
   }
 })
