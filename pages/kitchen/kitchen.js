@@ -105,5 +105,17 @@ Page({
       selectedList.push(id);
     }
     vm.setData({ ['order.selectedList']: selectedList });
+  },
+  deleteOrder: function (e) {
+    let vm = this;
+    console.log('//TO DO', '删除选中菜单');
+    vm.setData({ ['order.selectedList']: [] });
+
+    app.request.deleteOrderList({
+      id: '111',
+      callback(res) {
+        vm.setData({ ['order.orderList']: res });
+      }
+    });
   }
 })

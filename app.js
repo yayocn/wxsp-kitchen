@@ -97,6 +97,17 @@ App({
           option.callback(data);
         }
       })
+    },
+    deleteOrderList(option) {
+      const app = getApp();
+      wx.request({
+        url: `${app.globalData.host}/order/${option.id}`,
+        method: "DELETE",
+        success: function (result) {
+          const data = result.data;
+          option.callback(data);
+        }
+      })
     }
   }
 })
