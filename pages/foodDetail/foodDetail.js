@@ -19,9 +19,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(options)
     let vm = this;
     app.request.getFoodInfo({
-      id: '1',
+      id: options.id,
       callback (res) {
         vm.setData({ foodInfo: res });
       }

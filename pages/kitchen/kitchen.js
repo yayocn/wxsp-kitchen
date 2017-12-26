@@ -15,9 +15,9 @@ Page({
     }
   },
   goFoodDetails (e) {
-    let info = e.currentTarget.dataset.info;
+    let foodId = e.currentTarget.dataset.id;
     wx.navigateTo({
-      url: `/pages/foodDetail/foodDetail?id=${info.id}`,
+      url: `/pages/foodDetail/foodDetail?id=${foodId}`,
     })
   },
   addMenu (e) {
