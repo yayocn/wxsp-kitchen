@@ -7,6 +7,8 @@ Page({
   data: {
     order: {
       orderList: [],
+      // orderObj 是给orderList做的补充，用于将已选菜品的添加按钮设置为不可用
+      orderObj: {},
       listClass: '',
       selectedList: []
     }
@@ -18,12 +20,18 @@ Page({
   },
   addMenu(e) {
     let item = e.target.dataset.item;
+    let orderList = wx.getStorageSync('orderList');
+    for (let i = 0; i < orderList.length; i++) {
+      if (orderList[i]._id === item._id) {
+        return;
+      }
+    }
+
     let food = {
       pic: item.pic,
       name: item.name,
       _id: item._id
     };
-    let orderList = wx.getStorageSync('orderList');
     orderList.push(food);
     this.updateOrderList(orderList);
   },
@@ -31,6 +39,18 @@ Page({
     wx.removeStorageSync('orderList')
     wx.setStorageSync('orderList', list);
     this.setData({ ['order.orderList']: list });
+
+    let orderObj = {};
+    list.forEach(function (food) {
+      orderObj[food._id] = food;
+    });
+
+    this.setData({ ['order.orderObj']: orderObj });
+  },
+  toggleOrderListDialog(e) {
+    let vm = this;
+    let listClass = vm.data.order.listClass === '' ? 'show' : '';
+    vm.setData({ ['order.listClass']: listClass });
   },
   /**
    * 生命周期函数--监听页面加载
@@ -57,12 +77,7 @@ Page({
    */
   onShow: function () {
     let vm = this;
-    app.request.getOrderList({
-      id: '111',
-      callback(res) {
-        vm.setData({ orderList: res });
-      }
-    });
+    vm.updateOrderList(wx.getStorageSync('orderList'));
   },
 
   /**

@@ -3,7 +3,7 @@
     <icon class="back" type="download" size="40" color="success" catchtap="goBack"/>
     <text class="text-success header-title">{{ foodInfo.name }}</text>
   </view>
-  <image class="food-image" mode="aspectFill" src="http://localhost:8888/public/img/{{ foodInfo.pic }}"></image>
+  <image class="food-image" mode="{{ aspectFill }}" src="http://localhost:8888/public/img/{{ foodInfo.pic }}"></image> 
 
   <view class='m-t-10'>
     <text wx:for="{{ foodInfo.taste }}" wx:key="{{ index }}" wx:for-item="taste" class="label-badge m-r-5">{{ taste }}</text>
@@ -28,8 +28,8 @@
     </view>
   </view>
 
-  <button class="m-t-10" type="primary" data-item="{{ foodInfo }}" catchtap='addMenu'>就吃这个</button>
+  <button class="m-t-10" type="primary" disabled="{{ order.orderObj[foodInfo._id] }}" data-item="{{ foodInfo }}" catchtap='addMenu'>就吃这个</button>
 </view>
 
-<import src="/template/consoleMenu.wxml"/>
-<template is="consoleMenu" data="{{ ...order }}"/>
+<import src='/template/consoleMenu.wxml'/>
+<template is='consoleMenu' data="{{ ...order }}"/>
