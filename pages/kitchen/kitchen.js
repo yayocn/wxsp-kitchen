@@ -70,15 +70,18 @@ Page({
   },
   deleteOrder: function (e) {
     let vm = this;
-    console.log('//TO DO', '删除选中菜单');
-    vm.setData({ ['order.selectedList']: [] });
-
-    app.request.deleteOrderList({
-      id: '111',
-      callback(res) {
-        vm.setData({ ['order.orderList']: res });
+    let orderList = wx.getStorageSync('orderList');
+    vm.data.order.selectedList.forEach(function (item) {
+      for (let i = 0; i < orderList.length; i++) {
+        if (orderList[i]._id === item) {
+          orderList.splice(i, 1);
+          return;
+        }
       }
     });
+
+    vm.updateOrderList(orderList);
+    vm.setData({ ['order.selectedList']: [] });
   },
   /**
    * 生命周期函数--监听页面加载

@@ -52,6 +52,33 @@ Page({
     let listClass = vm.data.order.listClass === '' ? 'show' : '';
     vm.setData({ ['order.listClass']: listClass });
   },
+  checkboxChange: function (e) {
+    let vm = this;
+    let id = e.target.dataset.id;
+    let value = e.detail.value[0];
+    let selectedList = vm.data.order.selectedList;
+    if (value == undefined) {
+      selectedList.splice(vm.data.order.selectedList.indexOf(id), 1);
+    } else {
+      selectedList.push(id);
+    }
+    vm.setData({ ['order.selectedList']: selectedList });
+  },
+  deleteOrder: function (e) {
+    let vm = this;
+    let orderList = wx.getStorageSync('orderList');
+    vm.data.order.selectedList.forEach(function (item) {
+      for (let i = 0; i < orderList.length; i++) {
+        if (orderList[i]._id === item) {
+          orderList.splice(i, 1);
+          return;
+        }
+      }
+    });
+
+    vm.updateOrderList(orderList);
+    vm.setData({ ['order.selectedList']: [] });
+  },
   /**
    * 生命周期函数--监听页面加载
    */

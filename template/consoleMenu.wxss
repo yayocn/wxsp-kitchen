@@ -44,7 +44,7 @@
   z-index: 1000;
 }
 
-.menu-list .container {
+.menu-list .box {
   position: absolute;
   right: 0;
   left: 0;
@@ -54,7 +54,7 @@
 }
 
 .menu-list .box-header {
-   position: absolute; 
+  position: absolute; 
   bottom: 232px;
 }
 
@@ -74,6 +74,6 @@
 .order-item .checkbox {
   position: relative;
   top: -8px;
-  right: 8px;
+  right: 18px;
   float: right;
 }

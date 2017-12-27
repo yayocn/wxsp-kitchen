@@ -101,7 +101,7 @@
 }
 
 .box-header {
-  padding: 13px 20px;
+  padding: 15px 20rpx;
   width: 100%;
   border-bottom: 1px solid #e2e2e2;
   background-color: #fff;
@@ -109,6 +109,8 @@
 
 .box-body {
   position: relative;
+  padding-left: 20rpx;
+  padding-right: 20rpx;
   width: 100%;
   background-color: #fff;
 }
@@ -147,4 +149,9 @@
   float: left;
   font-size: 12px;
   margin-left: 10rpx;
+}
+
+.media-title {
+  margin-left: 10rpx;
+  font-size: 14px;
 }
