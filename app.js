@@ -96,6 +96,21 @@ App({
           option.callback(data);
         }
       })
+    },
+    submitOrder(option) {
+      const app = getApp();
+      wx.request({
+        url: `${app.globalData.host}/order/update`,
+        method: "POST",
+        data: {
+          openId: option.openId,
+          orderList: orderList
+        },
+        success: function (result) {
+          const data = result.data;
+          option.callback(data);
+        }
+      })
     }
   }
 })

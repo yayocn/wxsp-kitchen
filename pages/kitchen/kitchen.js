@@ -83,6 +83,17 @@ Page({
     vm.updateOrderList(orderList);
     vm.setData({ ['order.selectedList']: [] });
   },
+  submitOrder: function (e) {
+    let openId = app.globalData.openId;
+    let order
+    app.request.getFoodMenu({
+      openId,
+      orderList,
+      callback(res) {
+        vm.setData({ 'foodMenu': res });
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

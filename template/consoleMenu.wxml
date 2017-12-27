@@ -21,6 +21,6 @@
     <button type="default" disabled='{{ orderList.length === 0 }}' catchtap="toggleOrderListDialog">
       要吃这些 <text class="label label-badge">{{ orderList.length }}</text></button>
     <button type="warn" disabled="{{ selectedList.length <= 0 }}" catchtap="deleteOrder">删除</button>
-    <button type="primary" disabled='{{ orderList.length <= 0 }}'>提交</button>
+    <button type="primary" disabled='{{ orderList.length <= 0 }}' catchtap="submitOrder">提交</button>
   </view>
 </template>
