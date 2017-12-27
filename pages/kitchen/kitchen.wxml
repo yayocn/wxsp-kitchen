@@ -2,22 +2,22 @@
   <text class="text-success center-hz">厨房</text>
 
   <scroll-view style="margin-bottom: 46px;">
-    <view wx:for="{{ foodMenu }}" wx:for-item="menu" wx:for-index="category" class="kitchen-category">
+    <view wx:for="{{ foodMenu }}" wx:for-item="menu" wx:for-index="category" wx:key="category" class="kitchen-category">
       <text class="category-title text-capitalize">{{ category }}</text>
       <view class="category-content">
-        <view wx:for="{{ menu }}" data-id="{{ item._id }}"
+        <view wx:for="{{ menu }}" wx:key="_id" data-id="{{ item._id }}"
           class="category-item"
           bindtap="goFoodDetails">
           <image mode="{{ imgMode }}" src="http://localhost:8888/public/img/{{ item.pic }}" class="category-img"></image>
           <view class="category-detail">
             <text class="category-detail-row category-name">{{ item.name }}</text>
             <text class="category-detail-row category-taste">
-              <text wx:for="{{ item.taste }}" wx:key="{{ index }}" wx:for-item="taste" class="label-badge m-r-5">{{ taste }}</text>
+              <text wx:for="{{ item.taste }}" wx:for-item="taste" wx:key="index" class="label-badge m-r-5">{{ taste }}</text>
             </text>
             <text class="category-detail-row category-times">次数: {{ item.times }}</text>
           </view>
           <view class='category-handle'>
-            <button type='primary' class='' hover-stop-propagation='true' catchtap='addMenu'>+</button>
+            <button type='primary' disabled="{{ order.orderObj[item._id] }}" hover-stop-propagation='true' data-item="{{ item }}" catchtap='addMenu'>+</button>
           </view>
         </view>
       </view>

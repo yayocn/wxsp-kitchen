@@ -4,7 +4,7 @@
     <view class="container">
       <view class="box-header">下一顿要吃这些</view>
       <scroll-view class="box-body" scroll-y style="height: 232px;" scroll-into-view="red">
-        <view class="media order-item" wx:for="{{ orderList }}" wx:key="index">
+        <view class="media order-item" wx:for="{{ orderList }}" wx:key="_id">
           <image mode="aspectFill" src="http://localhost:8888/public/img/{{ item.pic }}" class="media-img"></image>
           <view class="meida-content">
             <text>{{ item.name }}</text>

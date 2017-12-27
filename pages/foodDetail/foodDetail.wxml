@@ -28,8 +28,8 @@
     </view>
   </view>
 
-  <button class="m-t-10" type="primary" catchtap='addMenu'>就吃这个</button>
+  <button class="m-t-10" type="primary" data-item="{{ foodInfo }}" catchtap='addMenu'>就吃这个</button>
 </view>
 
 <import src="/template/consoleMenu.wxml"/>
-<template is="consoleMenu" data="{{ orderList }}"/>
+<template is="consoleMenu" data="{{ ...order }}"/>

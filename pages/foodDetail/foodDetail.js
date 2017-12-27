@@ -5,21 +5,37 @@ Page({
    * 页面的初始数据
    */
   data: {
-    orderList: []
+    order: {
+      orderList: [],
+      listClass: '',
+      selectedList: []
+    }
   },
   goBack (e) {
     wx.navigateBack({
       delta: 1
     })
   },
-  addMenu () {
-
+  addMenu(e) {
+    let item = e.target.dataset.item;
+    let food = {
+      pic: item.pic,
+      name: item.name,
+      _id: item._id
+    };
+    let orderList = wx.getStorageSync('orderList');
+    orderList.push(food);
+    this.updateOrderList(orderList);
+  },
+  updateOrderList: function (list) {
+    wx.removeStorageSync('orderList')
+    wx.setStorageSync('orderList', list);
+    this.setData({ ['order.orderList']: list });
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options)
     let vm = this;
     app.request.getFoodInfo({
       id: options.id,
