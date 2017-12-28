@@ -79,18 +79,7 @@ App({
     getOrderList (option) {
       const app = getApp();
       wx.request({
-        url: `${ app.globalData.host }/order/${ option.id }`,
-        success: function (result) {
-          const data = result.data;
-          option.callback(data);
-        }
-      })
-    },
-    deleteOrderList(option) {
-      const app = getApp();
-      wx.request({
-        url: `${app.globalData.host}/order/${option.id}`,
-        method: "DELETE",
+        url: `${ app.globalData.host }/order/${ option.openId }`,
         success: function (result) {
           const data = result.data;
           option.callback(data);
@@ -104,7 +93,7 @@ App({
         method: "POST",
         data: {
           openId: option.openId,
-          orderList: orderList
+          orderList: option.orderList
         },
         success: function (result) {
           const data = result.data;

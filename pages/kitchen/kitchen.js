@@ -84,13 +84,14 @@ Page({
     vm.setData({ ['order.selectedList']: [] });
   },
   submitOrder: function (e) {
+    let vm = this;
     let openId = app.globalData.openId;
-    let order
-    app.request.getFoodMenu({
+    let orderList = vm.data.order.orderList;
+    app.request.submitOrder({
       openId,
       orderList,
       callback(res) {
-        vm.setData({ 'foodMenu': res });
+        
       }
     })
   },
@@ -118,12 +119,6 @@ Page({
    */
   onShow: function () {
     let vm = this;
-    // app.request.getOrderList({
-    //   id: '111',
-    //   callback (res) {
-    //     vm.setData({ ['order.orderList']: res });
-    //   }
-    // });
     vm.updateOrderList(wx.getStorageSync('orderList'));
   },
 
