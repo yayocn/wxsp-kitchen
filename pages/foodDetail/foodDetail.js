@@ -79,6 +79,18 @@ Page({
     vm.updateOrderList(orderList);
     vm.setData({ ['order.selectedList']: [] });
   },
+  submitOrder: function (e) {
+    let vm = this;
+    let openId = app.globalData.openId;
+    let orderListId = app.globalData.orderListId;
+
+    let orderList = vm.data.order.orderList;
+    app.request.submitOrder({
+      openId,
+      orderListId,
+      orderList
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -104,7 +116,14 @@ Page({
    */
   onShow: function () {
     let vm = this;
-    vm.updateOrderList(wx.getStorageSync('orderList'));
+    if (wx.getStorageSync('orderList')) {
+      vm.updateOrderList(wx.getStorageSync('orderList'));
+    } else {
+      app.request.getUnfinishedOrder({
+        openId: app.globalData.openId,
+        callback: vm.updateOrderList
+      })
+    }
   },
 
   /**

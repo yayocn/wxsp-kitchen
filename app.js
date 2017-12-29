@@ -1,15 +1,11 @@
 //app.js
 App({
   onLaunch: function () {
-    // 展示本地存储能力
-    let orderList = wx.getStorageSync('orderList');
-    wx.setStorageSync('orderList', orderList || []);
-
     // 登录
     wx.login({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
-        let self = this;
+        let vm = this;
         let appId = 'wxd6a1ad51140d5134';
         let appSecret = '9e1afbd7ae62f4891f8cacafa42d9582';
 
@@ -23,7 +19,10 @@ App({
             grant_type: 'authorization_code'
           },
           success: function (data) {
-            self.globalData.openId = data.data.openid;
+            vm.globalData.openId = data.data.openid;
+            vm.request.getUnfinishedOrder({
+              openId: data.data.openid
+            });
           }
         })
       }
@@ -52,6 +51,7 @@ App({
   globalData: {
     userInfo: null,
     openId: '',
+    orderListId: '',
     host: 'http://localhost:8888',
   },
   request: {
@@ -76,13 +76,25 @@ App({
         }
       })
     },
-    getOrderList (option) {
+    getUnfinishedOrder (option) {
       const app = getApp();
       wx.request({
-        url: `${ app.globalData.host }/order/${ option.openId }`,
+        url: `${ app.globalData.host }/order/unfinished/${ option.openId }`,
+        method: 'GET',
         success: function (result) {
-          const data = result.data;
-          option.callback(data);
+          let data = result.data;
+          if (data) {
+            const foods = data.foods;
+            const orderListId = data._id;
+            app.globalData.orderListId = orderListId;
+            wx.setStorageSync('orderList', foods);
+            if (option.callback) {
+              option.callback(foods);
+            }
+          } else {
+            app.globalData.orderListId = '';
+            wx.setStorageSync('orderList', []);
+          }
         }
       })
     },
@@ -93,11 +105,17 @@ App({
         method: "POST",
         data: {
           openId: option.openId,
+          orderListId: option.orderListId,
           orderList: option.orderList
         },
         success: function (result) {
           const data = result.data;
-          option.callback(data);
+          if (data.orderListId) {
+            app.globalData.orderListId = data.orderListId;
+          }
+          if (option.callback) {
+            option.callback(data);
+          }
         }
       })
     }
