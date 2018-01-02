@@ -100,22 +100,48 @@ App({
     },
     submitOrder(option) {
       const app = getApp();
-      wx.request({
-        url: `${app.globalData.host}/order/update`,
-        method: "POST",
-        data: {
-          openId: option.openId,
-          orderListId: option.orderListId,
-          orderList: option.orderList
-        },
-        success: function (result) {
-          const data = result.data;
-          if (data.orderListId) {
-            app.globalData.orderListId = data.orderListId;
-          }
-          if (option.callback) {
-            option.callback(data);
-          }
+      wx.showLoading({
+        title: '正在保存...',
+        mask: true,
+        success: function () {
+          wx.request({
+            url: `${app.globalData.host}/order/update`,
+            method: "POST",
+            data: {
+              openId: option.openId,
+              orderListId: option.orderListId,
+              orderList: option.orderList
+            },
+            success: function (result) {
+              const data = result.data;
+              if (data === 'error') {
+                wx.showToast({
+                  title: '提交失败！',
+                  icon: 'loading',
+                  duration: 2000
+                });
+              } else {
+                wx.showToast({
+                  title: '保存成功！',
+                  icon: 'success',
+                  duration: 2000
+                });
+                if (data.orderListId) {
+                  app.globalData.orderListId = data.orderListId;
+                }
+                if (option.callback) {
+                  option.callback(data);
+                }
+              }
+            },
+            fail: function () {
+              wx.showToast({
+                title: '提交失败！',
+                icon: 'loading',
+                duration: 2000
+              });
+            }
+          });
         }
       })
     }
