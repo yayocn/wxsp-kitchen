@@ -1,13 +1,31 @@
 // pages/orderList/orderList.js
+const app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-  
+    imgMode: 'aspectFill',
+    orderList: []
   },
-
+  completeOrder (e) {
+    let vm = this;
+    let orderId = e.currentTarget.dataset.item._id;
+    app.request.completeOrder({
+      orderId: orderId,
+      callback (data) {
+        app.request.getOrderList({
+          isFinish: false,
+          callback(data) {
+            vm.setData({
+              orderList: data
+            })
+          }
+        });
+      }
+    }) 
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -26,7 +44,15 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    let vm = this;
+    app.request.getOrderList({
+      isFinish: false,
+      callback (data) {
+        vm.setData({
+          orderList: data
+        })
+      }
+    });
   },
 
   /**

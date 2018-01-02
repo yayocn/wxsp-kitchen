@@ -25,7 +25,7 @@ App({
             });
 
             vm.request.getKitchenUserInfo({
-              openId: data.data.openid
+              openId: vm.globalData.openId
             });
           }
         })
@@ -118,6 +118,22 @@ App({
         }
       })
     },
+    getOrderList (option) {
+      const app = getApp();
+      wx.request({
+        url: `${app.globalData.host}/order/orderList`,
+        method: 'POST',
+        data: {
+          isFinish: option.isFinish 
+        },
+        success: function (result) {
+          const data = result.data;
+          if (option.callback) {
+            option.callback(data);
+          } 
+        }
+      })
+    },
     submitOrder(option) {
       const app = getApp();
       wx.showLoading({
@@ -153,17 +169,37 @@ App({
                   option.callback(data);
                 }
               }
-            },
-            fail: function () {
-              wx.showToast({
-                title: '提交失败！',
-                icon: 'loading',
-                duration: 2000
-              });
             }
           });
         }
       })
+    },
+    completeOrder: function (option) {
+      const app = getApp();
+      wx.request({
+        url: `${app.globalData.host}/order/complete/${ option.orderId }`,
+        method: "GET",
+        success: function (result) {
+          const data = result.data;
+          console.log(result)
+          if (data === 'error') {
+            wx.showToast({
+              title: '失败！',
+              icon: 'loading',
+              duration: 2000
+            });
+          } else {
+            wx.showToast({
+              title: '成功！',
+              icon: 'success',
+              duration: 2000
+            });
+            if (option.callback) {
+              option.callback(data);
+            }
+          }
+        }
+      });
     }
   }
 })

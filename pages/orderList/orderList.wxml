@@ -1,2 +1,16 @@
-<!--pages/orderList/orderList.wxml-->
-<text>pages/orderList/orderList.wxml</text>
+<view class="container wrap-left">
+  <view class="order-item" wx:for="{{ orderList }}" wx:key="index">
+    <text class="order-title">{{ item.time }}</text>
+    <view class="order-content">
+      <scroll-view scroll-x style="width: 300px;" class="order-food-list">
+        <view class="order-food" wx:for="{{ item.foods }}" wx:for-key="foodIndex" wx:for-item="food" wx:key="foodIndex">
+          <text class="food-title">{{ food.name }}</text>
+          <image class="food-pic" mode="{{ imgMode }}" src="http://localhost:8888/public/img/{{ food.pic }}"></image>
+        </view>
+      </scroll-view>
+      <view class='category-handle'>
+        <button type='primary' hover-stop-propagation='true' data-item="{{ item }}" catchtap="completeOrder">完成</button>
+      </view>
+    </view>
+  </view>
+</view>
