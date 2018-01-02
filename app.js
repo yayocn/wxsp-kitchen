@@ -68,6 +68,10 @@ App({
         success: function (result) {
           const data = result.data;
           app.globalData.kitchenUserInfo = data;
+
+          if (option.callback) {
+            option.callback(data)
+          }
         }
       })
     },

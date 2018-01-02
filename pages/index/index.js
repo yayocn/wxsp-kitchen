@@ -13,10 +13,10 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
   },
   onLoad: function () {
+    let vm = this;
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
-        kitchenUserInfo: app.globalData.kitchenUserInfo,
         hasUserInfo: true
       })
     } else if (this.data.canIUse){
@@ -40,6 +40,21 @@ Page({
           })
         }
       })
+    }
+
+    if (app.globalData.kitchenUserInfo) {
+      this.setData({
+        kitchenUserInfo: app.globalData.kitchenUserInfo
+      })
+    } else {
+      app.request.getKitchenUserInfo({
+        openId: app.globalData.openId,
+        callback (data) {
+          vm.setData({
+            kitchenUserInfo: data
+          })
+        }
+      });
     }
   },
   getUserInfo: function(e) {
