@@ -2,7 +2,8 @@
   "pages": [
     "pages/index/index",
     "pages/kitchen/kitchen",
-    "pages/foodDetail/foodDetail"
+    "pages/foodDetail/foodDetail",
+    "pages/orderList/orderList"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -8,7 +8,10 @@
     </block>
   </view>
   <view class="entry">
-    <button class="entry-button" catchtap="goKitchen">先进厨房再说</button>
+    <button class="entry-button" catchtap="goKitchen">进厨房点菜</button>
+  </view>
+  <view class="entry" wx:if="{{ kitchenUserInfo.lv === 2 }}">
+    <button class="entry-button" catchtap="goOrderList">厨房管理员</button>
   </view>
   <view class="usermotto">
     <text>{{motto}}</text>

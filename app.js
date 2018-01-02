@@ -23,6 +23,10 @@ App({
             vm.request.getUnfinishedOrder({
               openId: data.data.openid
             });
+
+            vm.request.getKitchenUserInfo({
+              openId: data.data.openid
+            });
           }
         })
       }
@@ -50,11 +54,23 @@ App({
   },
   globalData: {
     userInfo: null,
+    kitchenUserInfo: null,
     openId: '',
     orderListId: '',
     host: 'http://localhost:8888',
   },
   request: {
+    getKitchenUserInfo (option) {
+      const app = getApp();
+      wx.request({
+        url: `${app.globalData.host}/user/${ option.openId }`,
+        method: "GET",
+        success: function (result) {
+          const data = result.data;
+          app.globalData.kitchenUserInfo = data;
+        }
+      })
+    },
     getFoodMenu (option) {
       const app = getApp();
       wx.request({

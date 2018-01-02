@@ -8,6 +8,7 @@ Page({
   data: {
     motto: '食者众而耕者寡也',
     userInfo: {},
+    kitchenUserInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
   },
@@ -15,6 +16,7 @@ Page({
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
+        kitchenUserInfo: app.globalData.kitchenUserInfo,
         hasUserInfo: true
       })
     } else if (this.data.canIUse){
@@ -23,6 +25,7 @@ Page({
       app.userInfoReadyCallback = res => {
         this.setData({
           userInfo: res.userInfo,
+          kitchenUserInfo: app.globalData.kitchenUserInfo,
           hasUserInfo: true
         })
       }
@@ -50,5 +53,10 @@ Page({
     wx.navigateTo({
       url: '/pages/kitchen/kitchen'
     })
-  } 
+  },
+  goOrderList (e) {
+    wx.navigateTo({
+      url: '/pages/orderList/orderList'
+    })
+  }
 })
