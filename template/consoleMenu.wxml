@@ -1,4 +1,5 @@
 <template name="consoleMenu">
+  <text></text>
   <view class="menu-list {{ listClass }}">
     <view class='cover' catchtap='toggleOrderListDialog'></view> 
     <view class="box">

@@ -181,7 +181,6 @@ App({
         method: "GET",
         success: function (result) {
           const data = result.data;
-          console.log(result)
           if (data === 'error') {
             wx.showToast({
               title: '失败！',

@@ -1,9 +1,12 @@
 <view class="container wrap-left">
+  <text class="text-success center-hz">未完成菜单</text>
+
   <view class="order-item" wx:for="{{ orderList }}" wx:key="index">
     <text class="order-title">{{ item.time }}</text>
     <view class="order-content">
       <scroll-view scroll-x style="width: 300px;" class="order-food-list">
-        <view class="order-food" wx:for="{{ item.foods }}" wx:for-key="foodIndex" wx:for-item="food" wx:key="foodIndex">
+        <view class="order-food" wx:for="{{ item.foods }}" wx:for-key="foodIndex" 
+          wx:for-item="food" wx:key="foodIndex" data-id="{{ food._id }}" bindtap="goFoodDetails">
           <text class="food-title">{{ food.name }}</text>
           <image class="food-pic" mode="{{ imgMode }}" src="http://localhost:8888/public/img/{{ food.pic }}"></image>
         </view>
@@ -13,4 +16,6 @@
       </view>
     </view>
   </view>
+
+  <text wx:if="{{ orderList.length === 0 }}" class="center-hz" style="height: 200px; line-height: 200px; color: #999;">恭喜，您不用做饭了！</text>
 </view>
